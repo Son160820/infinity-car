@@ -128,8 +128,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2057611295953754930}
   - component: {fileID: 3013659911742105882}
-  - component: {fileID: 6322945678532546444}
   - component: {fileID: -7979426398602824397}
+  - component: {fileID: 7823927415027511729}
   m_Layer: 0
   m_Name: police
   m_TagString: Untagged
@@ -181,22 +181,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.336484, y: 1.230975, z: 3.027783}
   m_Center: {x: 0.002151966, y: 0.6693941, z: -0.01451993}
---- !u!114 &6322945678532546444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712997605075042696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3325f7eda1bb7cd4a87202c6e86df0a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  gameController: {fileID: 0}
-  minDistanceToDeleteObjects: 15
-  maxDistanceToDeleteObjects: 120
 --- !u!54 &-7979426398602824397
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -224,6 +208,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7823927415027511729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712997605075042696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618606fcf6be9044d82f8dcf64cfde7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 15
 --- !u!1 &2179677064033375208
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,7 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32fb40e42bdbd0f4393fd132a9e99a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisCar: {fileID: 6322945678532546444}
+  thisCar: {fileID: 0}
   rayLength: 3
 --- !u!1 &4803807474919827022
 GameObject:
@@ -581,7 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1b703928855bd94ab33f13c0a6c4057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisCar: {fileID: 6322945678532546444}
+  thisCar: {fileID: 0}
 --- !u!1 &5938434306449732488
 GameObject:
   m_ObjectHideFlags: 0

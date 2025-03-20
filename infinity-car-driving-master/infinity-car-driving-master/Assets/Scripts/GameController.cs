@@ -29,7 +29,6 @@ public class GameController : MonoBehaviour
             Pausing();       
     }
 
-    //пауза игры
     public void Pausing()
     {
         if (Time.deltaTime == 0f)
@@ -51,13 +50,11 @@ public class GameController : MonoBehaviour
         }
     }
 
-    //перезагрузка игры
     public void Restarting()
     {
         SceneManager.LoadScene(0);
     }
 
-    //обработчик проигрыша игрока
     public void PlayerLose()
     {
         Cursor.visible = true;
@@ -69,7 +66,6 @@ public class GameController : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    //выход из игры
     public void ExitGame()
     {
         Application.Quit();
