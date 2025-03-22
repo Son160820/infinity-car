@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCar : MonoBehaviour
 {
@@ -19,6 +22,14 @@ public class PlayerCar : MonoBehaviour
     public float rotationSpeed = 10f; // Tốc độ xoay của xe
     public float wheelTurnAngle = 30f; // Góc xoay tối đa của bánh xe
 
+    [Header("UI")]
+    public float V_in_km_h = 0;  // Tốc độ tính theo km/h
+    public float TotalPath = 0f; // Tổng quãng đường đã đi
+    public Text textFPS;        // Hiển thị FPS
+    public Text textSpeed;      // Hiển thị tốc độ
+    public Text textPath;       // Hiển thị quãng đường đã đi
+    public Text textTotalPath;  // Hiển thị tổng quãng đường
+
     //private float t = 0;  // Thời gian
     //private float v0 = 0; // Tốc độ ban đầu
 
@@ -27,6 +38,8 @@ public class PlayerCar : MonoBehaviour
     void Start()
     {
         N = N_hp * 735f;            //Chuyển đôi thành J
+        // Bắt đầu coroutine để hiển thị tốc độ
+        StartCoroutine(dataShow(textFPS.GetComponent<Text>(), textSpeed.GetComponent<Text>()));
     }
 
     // Update is called once per frame
@@ -69,6 +82,12 @@ public class PlayerCar : MonoBehaviour
 
         // Di chuyển xe theo hướng trước
         transform.Translate(Vector3.forward * v * Time.deltaTime);
+        V_in_km_h = v * 3.6f;
+
+        // Cập nhật vị trí
+        float dist = v * Time.deltaTime;
+        transform.position += transform.forward * dist;
+        TotalPath += dist;
     }
 
     void Controller()
@@ -122,5 +141,17 @@ public class PlayerCar : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, newRotationY, 0f);
 
         Controller();
+    }
+
+    IEnumerator dataShow(Text fpsText, Text speedText)
+    {
+        while (true)
+        {
+            fpsText.text = "FPS = " + ((int)(1 / Time.deltaTime)).ToString();
+            speedText.text = ((int)V_in_km_h).ToString() + " km/h";
+            textPath.text = ((int)TotalPath).ToString() + " m";
+            textTotalPath.text = "Your path is " + ((int)TotalPath).ToString() + " m";
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }

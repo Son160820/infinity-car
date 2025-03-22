@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
 
     public void Pausing()
     {
-        if (Time.deltaTime == 0f)
+        if (Time.timeScale == 0f)
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
