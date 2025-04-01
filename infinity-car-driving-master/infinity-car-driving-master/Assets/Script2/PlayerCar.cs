@@ -33,6 +33,11 @@ public class PlayerCar : MonoBehaviour
     //private float t = 0;  // Thời gian
     //private float v0 = 0; // Tốc độ ban đầu
 
+    // Biến nhận tín hiệu từ button
+    private bool isAccelerating = false;
+    private bool isDecelerating = false;
+    private float steeringInput = 0f;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,6 +52,7 @@ public class PlayerCar : MonoBehaviour
     {
         calsPower();
         HandleWheelSteering();
+        HandleTouchInput(); // Xử lý khi chạm vào màn hình
     }
 
     void calsPower()
@@ -90,6 +96,18 @@ public class PlayerCar : MonoBehaviour
         TotalPath += dist;
     }
 
+    void HandleTouchInput()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Stationary)
+            {
+                v += 5f * Time.deltaTime; // Tăng tốc khi giữ màn hình
+            }
+        }
+    }
+
     void Controller()
     {
         // Lấy hướng của 2 bánh xe phía trước
@@ -126,7 +144,8 @@ public class PlayerCar : MonoBehaviour
         }
 
         // Tính góc xoay dựa trên input
-        float targetAngle = flagInput * wheelTurnAngle;
+        //float targetAngle = flagInput * wheelTurnAngle;
+        float targetAngle = steeringInput * wheelTurnAngle;
 
         // Áp dụng góc xoay cho cả 2 bánh xe
         frontLeftWheel.localRotation = Quaternion.Euler(0f, targetAngle, 0f);
@@ -154,4 +173,9 @@ public class PlayerCar : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
     }
+
+    // Hàm điều khiển từ UI
+    public void SetAccelerating(bool state) { isAccelerating = state; }
+    public void SetDecelerating(bool state) { isDecelerating = state; }
+    public void SetSteering(float value) { steeringInput = value; }
 }

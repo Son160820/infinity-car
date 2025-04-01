@@ -1,0 +1,1 @@
+C:\Users\TTC\Documents\GitHub\infinity-car\infinity-car-driving-master\infinity-car-driving-master\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\cpp\FramePacing\UnitySwappyWrapper.h
